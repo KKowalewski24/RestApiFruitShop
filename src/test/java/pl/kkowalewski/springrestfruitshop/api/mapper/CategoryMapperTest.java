@@ -4,7 +4,7 @@ import org.junit.Test;
 import pl.kkowalewski.springrestfruitshop.api.model.CategoryDto;
 import pl.kkowalewski.springrestfruitshop.model.Category;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class CategoryMapperTest {
 
