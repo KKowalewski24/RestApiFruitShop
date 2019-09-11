@@ -1,12 +1,14 @@
 package pl.kkowalewski.springrestfruitshop.service;
 
-import pl.kkowalewski.springrestfruitshop.api.mapper.CategoryMapper;
-import pl.kkowalewski.springrestfruitshop.api.model.CategoryDto;
+import org.springframework.stereotype.Service;
+import pl.kkowalewski.springrestfruitshop.api.ver1.mapper.CategoryMapper;
+import pl.kkowalewski.springrestfruitshop.api.ver1.model.CategoryDto;
 import pl.kkowalewski.springrestfruitshop.repository.CategoryRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@Service
 public class CategoryServiceImpl implements CategoryService {
 
     /*------------------------ FIELDS REGION ------------------------*/

@@ -1,4 +1,4 @@
-package pl.kkowalewski.springrestfruitshop.api.model;
+package pl.kkowalewski.springrestfruitshop.api.ver1.model;
 
 public class CategoryDto {
 
