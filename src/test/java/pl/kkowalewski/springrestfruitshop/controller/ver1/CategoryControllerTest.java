@@ -47,7 +47,7 @@ public class CategoryControllerTest {
         mockMvc = MockMvcBuilders.standaloneSetup(categoryController).build();
     }
 
-    private List<CategoryDto> prepareCategoryList(CategoryDto... categoryDtos) {
+    private List<CategoryDto> prepareCategoryDtoList(CategoryDto... categoryDtos) {
         List<CategoryDto> categoryDtoList = new ArrayList<>();
 
         for (CategoryDto it : categoryDtos) {
@@ -60,7 +60,7 @@ public class CategoryControllerTest {
     @Test
     public void getAllCategoriesTest() throws Exception {
         when(categoryService.getAllCategories())
-                .thenReturn(prepareCategoryList(
+                .thenReturn(prepareCategoryDtoList(
                         new CategoryDto(CATEGORY_ID_ONE, CATEGORY_NAME_ONE),
                         new CategoryDto(CATEGORY_ID_TWO, CATEGORY_NAME_TWO)
                 ));

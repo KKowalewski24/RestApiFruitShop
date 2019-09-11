@@ -1,4 +1,4 @@
-package pl.kkowalewski.springrestfruitshop.service;
+package pl.kkowalewski.springrestfruitshop.service.category;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,8 +9,6 @@ import pl.kkowalewski.springrestfruitshop.api.ver1.mapper.CategoryMapper;
 import pl.kkowalewski.springrestfruitshop.api.ver1.model.category.CategoryDto;
 import pl.kkowalewski.springrestfruitshop.model.Category;
 import pl.kkowalewski.springrestfruitshop.repository.CategoryRepository;
-import pl.kkowalewski.springrestfruitshop.service.category.CategoryService;
-import pl.kkowalewski.springrestfruitshop.service.category.CategoryServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;

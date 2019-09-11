@@ -4,7 +4,7 @@ import org.junit.Test;
 import pl.kkowalewski.springrestfruitshop.api.ver1.model.category.CategoryDto;
 import pl.kkowalewski.springrestfruitshop.model.Category;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class CategoryMapperTest {
 
@@ -22,6 +22,13 @@ public class CategoryMapperTest {
 
         assertEquals(CATEGORY_ID, categoryDto.getId());
         assertEquals(NAME, categoryDto.getName());
+    }
+
+    @Test
+    public void categoryToCategoryDTONullTest() {
+        CategoryDto categoryDto = categoryMapper.categoryToCategoryDTO(null);
+
+        assertNull(categoryDto);
     }
 }
     
