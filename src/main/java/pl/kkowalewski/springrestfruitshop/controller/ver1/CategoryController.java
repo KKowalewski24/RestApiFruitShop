@@ -6,22 +6,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.CategoryDto;
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.CategoryListDto;
-import pl.kkowalewski.springrestfruitshop.service.CategoryService;
-
-import static pl.kkowalewski.springrestfruitshop.controller.ver1.CategoryController.ROOT_PATH;
+import pl.kkowalewski.springrestfruitshop.AppConstant;
+import pl.kkowalewski.springrestfruitshop.api.ver1.model.category.CategoryDto;
+import pl.kkowalewski.springrestfruitshop.api.ver1.model.category.CategoryListDto;
+import pl.kkowalewski.springrestfruitshop.service.category.CategoryService;
 
 @Controller
-@RequestMapping(ROOT_PATH)
+@RequestMapping(AppConstant.CATEGORY_ROOT_PATH)
 public class CategoryController {
 
     /*------------------------ FIELDS REGION ------------------------*/
-    public static final String API = "api";
-    public static final String VER1 = "ver1";
-    public static final String CATEGORIES = "categories";
-    public static final String ROOT_PATH = "/" + API + "/" + VER1 + "/" + CATEGORIES + "/";
-
     private final CategoryService categoryService;
 
     /*------------------------ METHODS REGION ------------------------*/

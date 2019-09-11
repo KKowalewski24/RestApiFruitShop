@@ -6,9 +6,11 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import pl.kkowalewski.springrestfruitshop.api.ver1.mapper.CategoryMapper;
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.CategoryDto;
+import pl.kkowalewski.springrestfruitshop.api.ver1.model.category.CategoryDto;
 import pl.kkowalewski.springrestfruitshop.model.Category;
 import pl.kkowalewski.springrestfruitshop.repository.CategoryRepository;
+import pl.kkowalewski.springrestfruitshop.service.category.CategoryService;
+import pl.kkowalewski.springrestfruitshop.service.category.CategoryServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;

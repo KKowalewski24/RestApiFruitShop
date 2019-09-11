@@ -1,8 +1,8 @@
-package pl.kkowalewski.springrestfruitshop.service;
+package pl.kkowalewski.springrestfruitshop.service.category;
 
 import org.springframework.stereotype.Service;
 import pl.kkowalewski.springrestfruitshop.api.ver1.mapper.CategoryMapper;
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.CategoryDto;
+import pl.kkowalewski.springrestfruitshop.api.ver1.model.category.CategoryDto;
 import pl.kkowalewski.springrestfruitshop.repository.CategoryRepository;
 
 import java.util.List;

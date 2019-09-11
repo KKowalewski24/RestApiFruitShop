@@ -3,17 +3,22 @@ package pl.kkowalewski.springrestfruitshop.bootstrap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 import pl.kkowalewski.springrestfruitshop.model.Category;
+import pl.kkowalewski.springrestfruitshop.model.Customer;
 import pl.kkowalewski.springrestfruitshop.repository.CategoryRepository;
+import pl.kkowalewski.springrestfruitshop.repository.CustomerRepository;
 
 @Component
 public class FruitShopBootstrap implements CommandLineRunner {
 
     /*------------------------ FIELDS REGION ------------------------*/
     private final CategoryRepository categoryRepository;
+    private final CustomerRepository customerRepository;
 
     /*------------------------ METHODS REGION ------------------------*/
-    public FruitShopBootstrap(CategoryRepository categoryRepository) {
+    public FruitShopBootstrap(CategoryRepository categoryRepository,
+                              CustomerRepository customerRepository) {
         this.categoryRepository = categoryRepository;
+        this.customerRepository = customerRepository;
     }
 
     private Category prepareCategory(String name) {
@@ -23,6 +28,13 @@ public class FruitShopBootstrap implements CommandLineRunner {
         return category;
     }
 
+    private Customer prepareCustomer(Long id, String firstName, String lastName) {
+        Customer customer = new Customer(id, firstName, lastName);
+        customerRepository.save(customer);
+
+        return customer;
+    }
+
     @Override
     public void run(String... args) {
         Category fruits = prepareCategory("Fruits");
@@ -30,6 +42,10 @@ public class FruitShopBootstrap implements CommandLineRunner {
         Category fresh = prepareCategory("Fresh");
         Category exotic = prepareCategory("Exotic");
 
-        System.out.println("Data Loaded = " + categoryRepository.count());
+        Customer customer1 = prepareCustomer(1L, "Michale", "Weston");
+        Customer customer2 = prepareCustomer(2L, "Sam", "Axe");
+
+        System.out.println("Categories Loaded: " + categoryRepository.count());
+        System.out.println("Customers Loaded: " + customerRepository.count());
     }
 }

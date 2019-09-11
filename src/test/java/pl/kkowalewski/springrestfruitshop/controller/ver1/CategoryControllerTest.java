@@ -9,8 +9,9 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.CategoryDto;
-import pl.kkowalewski.springrestfruitshop.service.CategoryService;
+import pl.kkowalewski.springrestfruitshop.AppConstant;
+import pl.kkowalewski.springrestfruitshop.api.ver1.model.category.CategoryDto;
+import pl.kkowalewski.springrestfruitshop.service.category.CategoryService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -64,7 +65,7 @@ public class CategoryControllerTest {
                         new CategoryDto(CATEGORY_ID_TWO, CATEGORY_NAME_TWO)
                 ));
 
-        mockMvc.perform(get(CategoryController.ROOT_PATH)
+        mockMvc.perform(get(AppConstant.CATEGORY_ROOT_PATH)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.categoryDtoList", hasSize(2)));
@@ -75,7 +76,7 @@ public class CategoryControllerTest {
         when(categoryService.getCategoryByName(anyString()))
                 .thenReturn(new CategoryDto(CATEGORY_ID_ONE, CATEGORY_NAME_ONE));
 
-        mockMvc.perform(get(CategoryController.ROOT_PATH + CATEGORY_NAME_ONE)
+        mockMvc.perform(get(AppConstant.CATEGORY_ROOT_PATH + CATEGORY_NAME_ONE)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", equalTo(CATEGORY_NAME_ONE)));
