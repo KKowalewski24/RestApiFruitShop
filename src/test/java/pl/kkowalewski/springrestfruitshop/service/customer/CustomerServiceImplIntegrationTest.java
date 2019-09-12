@@ -12,6 +12,7 @@ import pl.kkowalewski.springrestfruitshop.bootstrap.FruitShopBootstrap;
 import pl.kkowalewski.springrestfruitshop.model.Customer;
 import pl.kkowalewski.springrestfruitshop.repository.CategoryRepository;
 import pl.kkowalewski.springrestfruitshop.repository.CustomerRepository;
+import pl.kkowalewski.springrestfruitshop.repository.VendorRepository;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNot.not;
@@ -30,6 +31,9 @@ public class CustomerServiceImplIntegrationTest {
     @Autowired
     private CategoryRepository categoryRepository;
 
+    @Autowired
+    private VendorRepository vendorRepository;
+
     private CustomerService customerService;
 
     /*------------------------ METHODS REGION ------------------------*/
@@ -37,7 +41,7 @@ public class CustomerServiceImplIntegrationTest {
     public void setUp() {
         customerService = new CustomerServiceImpl(
                 CustomerMapper.INSTANCE, customerRepository);
-        new FruitShopBootstrap(categoryRepository, customerRepository).run();
+        new FruitShopBootstrap(categoryRepository, customerRepository, vendorRepository).run();
     }
 
     @Test

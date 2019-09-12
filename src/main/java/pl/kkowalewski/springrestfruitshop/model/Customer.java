@@ -68,7 +68,9 @@ public class Customer {
             return true;
         }
 
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Customer customer = (Customer) o;
 

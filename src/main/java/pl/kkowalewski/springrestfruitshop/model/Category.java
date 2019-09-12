@@ -57,7 +57,9 @@ public class Category {
             return true;
         }
 
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Category category = (Category) o;
 

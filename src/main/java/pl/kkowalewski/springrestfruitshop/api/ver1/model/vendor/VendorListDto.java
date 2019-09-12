@@ -1,4 +1,4 @@
-package pl.kkowalewski.springrestfruitshop.api.ver1.model.customer;
+package pl.kkowalewski.springrestfruitshop.api.ver1.model.vendor;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -6,25 +6,25 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.List;
 
-public class CustomerListDto {
+public class VendorListDto {
 
     /*------------------------ FIELDS REGION ------------------------*/
-    private List<CustomerDto> customerDtoList;
+    private List<VendorDto> vendorDtoList;
 
     /*------------------------ METHODS REGION ------------------------*/
-    public CustomerListDto() {
+    public VendorListDto() {
     }
 
-    public CustomerListDto(List<CustomerDto> customerDtoList) {
-        this.customerDtoList = customerDtoList;
+    public VendorListDto(List<VendorDto> vendorDtoList) {
+        this.vendorDtoList = vendorDtoList;
     }
 
-    public List<CustomerDto> getCustomerDtoList() {
-        return customerDtoList;
+    public List<VendorDto> getVendorDtoList() {
+        return vendorDtoList;
     }
 
-    public void setCustomerDtoList(List<CustomerDto> customerDtoList) {
-        this.customerDtoList = customerDtoList;
+    public void setVendorDtoList(List<VendorDto> vendorDtoList) {
+        this.vendorDtoList = vendorDtoList;
     }
 
     @Override
@@ -37,24 +37,24 @@ public class CustomerListDto {
             return false;
         }
 
-        CustomerListDto that = (CustomerListDto) o;
+        VendorListDto that = (VendorListDto) o;
 
         return new EqualsBuilder()
-                .append(customerDtoList, that.customerDtoList)
+                .append(vendorDtoList, that.vendorDtoList)
                 .isEquals();
     }
 
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
-                .append(customerDtoList)
+                .append(vendorDtoList)
                 .toHashCode();
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("customerDtoList", customerDtoList)
+                .append("vendorDtoList", vendorDtoList)
                 .toString();
     }
 }

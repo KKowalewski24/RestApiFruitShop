@@ -60,7 +60,9 @@ public class CustomerDto {
             return true;
         }
 
-        if (o == null || getClass() != o.getClass()) return false;
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         CustomerDto that = (CustomerDto) o;
 

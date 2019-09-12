@@ -1,28 +1,36 @@
-package pl.kkowalewski.springrestfruitshop.api.ver1.model.category;
+package pl.kkowalewski.springrestfruitshop.model;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class CategoryDto {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
+public class Vendor {
 
     /*------------------------ FIELDS REGION ------------------------*/
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
     /*------------------------ METHODS REGION ------------------------*/
-    public CategoryDto() {
+    public Vendor() {
     }
 
-    public CategoryDto(Long id) {
+    public Vendor(Long id) {
         this.id = id;
     }
 
-    public CategoryDto(String name) {
+    public Vendor(String name) {
         this.name = name;
     }
 
-    public CategoryDto(Long id, String name) {
+    public Vendor(Long id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -53,11 +61,11 @@ public class CategoryDto {
             return false;
         }
 
-        CategoryDto that = (CategoryDto) o;
+        Vendor vendor = (Vendor) o;
 
         return new EqualsBuilder()
-                .append(id, that.id)
-                .append(name, that.name)
+                .append(id, vendor.id)
+                .append(name, vendor.name)
                 .isEquals();
     }
 
