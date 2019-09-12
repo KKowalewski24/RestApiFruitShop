@@ -1,17 +1,13 @@
 package pl.kkowalewski.springrestfruitshop.controller.ver1;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import pl.kkowalewski.springrestfruitshop.AppConstant;
 import pl.kkowalewski.springrestfruitshop.api.ver1.model.category.CategoryDto;
 import pl.kkowalewski.springrestfruitshop.api.ver1.model.category.CategoryListDto;
 import pl.kkowalewski.springrestfruitshop.service.category.CategoryService;
 
-@Controller
+@RestController
 @RequestMapping(AppConstant.CATEGORY_ROOT_PATH)
 public class CategoryController {
 
@@ -24,14 +20,14 @@ public class CategoryController {
     }
 
     @GetMapping({AppConstant.ROOT, AppConstant.SLASH})
-    public ResponseEntity<CategoryListDto> getAllCategories() {
-        return new ResponseEntity<>(new CategoryListDto(
-                categoryService.getAllCategories()), HttpStatus.OK);
+    @ResponseStatus(HttpStatus.OK)
+    public CategoryListDto getAllCategories() {
+        return new CategoryListDto(categoryService.getAllCategories());
     }
 
-    @GetMapping(AppConstant.SLASH + "{name}")
-    public ResponseEntity<CategoryDto> getCategoryByName(@PathVariable String name) {
-        return new ResponseEntity<>(
-                categoryService.getCategoryByName(name), HttpStatus.OK);
+    @GetMapping(AppConstant.SLASH + AppConstant.NAME)
+    @ResponseStatus(HttpStatus.OK)
+    public CategoryDto getCategoryByName(@PathVariable String name) {
+        return categoryService.getCategoryByName(name);
     }
 }

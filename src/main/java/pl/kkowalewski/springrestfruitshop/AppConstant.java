@@ -10,6 +10,7 @@ public class AppConstant {
     public static final String CATEGORIES = "categories";
     public static final String CUSTOMERS = "customers";
     public static final String ID = "{id}";
+    public static final String NAME = "{name}";
 
     public static final String RESOURCE_NOT_FOUND = "Resource Not Found";
 

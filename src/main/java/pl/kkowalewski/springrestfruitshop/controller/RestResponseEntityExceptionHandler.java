@@ -1,4 +1,4 @@
-package pl.kkowalewski.springrestfruitshop.controller.ver1;
+package pl.kkowalewski.springrestfruitshop.controller;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

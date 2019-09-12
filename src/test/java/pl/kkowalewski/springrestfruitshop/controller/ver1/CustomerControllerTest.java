@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import pl.kkowalewski.springrestfruitshop.AppConstant;
 import pl.kkowalewski.springrestfruitshop.api.ver1.model.customer.CustomerDto;
+import pl.kkowalewski.springrestfruitshop.controller.RestResponseEntityExceptionHandler;
 import pl.kkowalewski.springrestfruitshop.exception.ResourceNotFoundException;
 import pl.kkowalewski.springrestfruitshop.service.customer.CustomerService;
 
