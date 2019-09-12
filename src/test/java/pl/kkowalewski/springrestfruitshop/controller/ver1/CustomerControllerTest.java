@@ -11,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import pl.kkowalewski.springrestfruitshop.AppConstant;
 import pl.kkowalewski.springrestfruitshop.api.ver1.model.customer.CustomerDto;
+import pl.kkowalewski.springrestfruitshop.exception.ResourceNotFoundException;
 import pl.kkowalewski.springrestfruitshop.service.customer.CustomerService;
 
 import java.util.ArrayList;
@@ -50,7 +51,9 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
     /*------------------------ METHODS REGION ------------------------*/
     @Before
     public void setUp() {
-        mockMvc = MockMvcBuilders.standaloneSetup(customerController).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(customerController)
+                .setControllerAdvice(new RestResponseEntityExceptionHandler())
+                .build();
     }
 
     private List<CustomerDto> prepareCustomerDtoList(CustomerDto... customerDtos) {
@@ -92,6 +95,18 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName",
                         equalTo(CUSTOMER_FIRST_NAME_ONE)));
+    }
+
+    @Test
+    public void getCustomerByIdNotFoundTest() throws Exception {
+        when(customerService.getCustomerById(anyLong()))
+                .thenThrow(ResourceNotFoundException.class);
+
+        mockMvc.perform(get(AppConstant.CUSTOMERS_ROOT_PATH
+                + AppConstant.SLASH + "-1024")
+                .contentType(MediaType.APPLICATION_JSON)
+        )
+                .andExpect(status().isNotFound());
     }
 
     @Test

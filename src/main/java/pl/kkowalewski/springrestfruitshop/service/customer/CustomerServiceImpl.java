@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import pl.kkowalewski.springrestfruitshop.AppConstant;
 import pl.kkowalewski.springrestfruitshop.api.ver1.mapper.CustomerMapper;
 import pl.kkowalewski.springrestfruitshop.api.ver1.model.customer.CustomerDto;
+import pl.kkowalewski.springrestfruitshop.exception.ResourceNotFoundException;
 import pl.kkowalewski.springrestfruitshop.model.Customer;
 import pl.kkowalewski.springrestfruitshop.repository.CustomerRepository;
 
@@ -49,7 +50,7 @@ public class CustomerServiceImpl implements CustomerService {
     public CustomerDto getCustomerById(Long id) {
         return customerRepository.findById(id)
                 .map(customerMapper::customerToCustomerDto)
-                .orElseThrow(RuntimeException::new);
+                .orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override
@@ -79,7 +80,7 @@ public class CustomerServiceImpl implements CustomerService {
             customerDtoSave.setCustomerUrl(AppConstant.CUSTOMERS_ROOT_PATH + AppConstant.SLASH + id);
 
             return customerDtoSave;
-        }).orElseThrow(RuntimeException::new);
+        }).orElseThrow(ResourceNotFoundException::new);
     }
 
     @Override
