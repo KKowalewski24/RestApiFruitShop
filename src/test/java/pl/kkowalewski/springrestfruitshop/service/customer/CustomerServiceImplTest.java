@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import pl.kkowalewski.springrestfruitshop.AppConstant;
 import pl.kkowalewski.springrestfruitshop.api.ver1.mapper.CustomerMapper;
 import pl.kkowalewski.springrestfruitshop.api.ver1.model.customer.CustomerDto;
 import pl.kkowalewski.springrestfruitshop.model.Customer;
@@ -14,7 +15,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 
@@ -66,6 +68,21 @@ public class CustomerServiceImplTest {
 
         assertEquals(CUSTOMER_FIRST_NAME, customerDto.getFirstName());
         assertEquals(CUSTOMER_LAST_NAME, customerDto.getLastName());
+    }
+
+    @Test
+    public void createNewCustomerTest() {
+        CustomerDto customerDto = new CustomerDto(CUSTOMER_FIRST_NAME, CUSTOMER_LAST_NAME);
+        Customer customer = new Customer(CUSTOMER_ID,
+                customerDto.getFirstName(), customerDto.getLastName());
+
+        when(customerRepository.save(any(Customer.class))).thenReturn(customer);
+
+        CustomerDto savedDto = customerService.createNewCustomer(customerDto);
+
+        assertEquals(customerDto.getFirstName(), savedDto.getFirstName());
+        assertEquals(AppConstant.CUSTOMERS_ROOT_PATH + CUSTOMER_ID,
+                savedDto.getCustomerUrl());
     }
 }
     

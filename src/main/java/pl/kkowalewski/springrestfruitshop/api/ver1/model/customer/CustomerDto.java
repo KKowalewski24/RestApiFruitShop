@@ -1,5 +1,9 @@
 package pl.kkowalewski.springrestfruitshop.api.ver1.model.customer;
 
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 public class CustomerDto {
 
     /*------------------------ FIELDS REGION ------------------------*/
@@ -44,5 +48,40 @@ public class CustomerDto {
 
     public void setCustomerUrl(String customerUrl) {
         this.customerUrl = customerUrl;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CustomerDto that = (CustomerDto) o;
+
+        return new EqualsBuilder()
+                .append(firstName, that.firstName)
+                .append(lastName, that.lastName)
+                .append(customerUrl, that.customerUrl)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(firstName)
+                .append(lastName)
+                .append(customerUrl)
+                .toHashCode();
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this)
+                .append("firstName", firstName)
+                .append("lastName", lastName)
+                .append("customerUrl", customerUrl)
+                .toString();
     }
 }

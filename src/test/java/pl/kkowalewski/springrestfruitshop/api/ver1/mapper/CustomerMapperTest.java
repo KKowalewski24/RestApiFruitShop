@@ -20,7 +20,7 @@ public class CustomerMapperTest {
     @Test
     public void customerToCustomerDTOTest() {
         CustomerDto customerDto = customerMapper
-                .customerToCustomerDTO(new Customer(ID, FIRST_NAME, LAST_NAME));
+                .customerToCustomerDto(new Customer(ID, FIRST_NAME, LAST_NAME));
 
         assertEquals(FIRST_NAME, customerDto.getFirstName());
         assertEquals(LAST_NAME, customerDto.getLastName());
@@ -28,7 +28,7 @@ public class CustomerMapperTest {
 
     @Test
     public void customerToCustomerDTONullTest() {
-        CustomerDto customerDto = customerMapper.customerToCustomerDTO(null);
+        CustomerDto customerDto = customerMapper.customerToCustomerDto(null);
 
         assertNull(customerDto);
     }

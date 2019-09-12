@@ -16,16 +16,18 @@ import pl.kkowalewski.springrestfruitshop.service.customer.CustomerService;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
-import static org.hamcrest.core.IsEqual.equalTo;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(MockitoJUnitRunner.class)
-public class CustomerControllerTest {
+public class CustomerControllerTest extends AbstractRestControllerTest {
 
     /*------------------------ FIELDS REGION ------------------------*/
     private static final String CUSTOMER_FIRST_NAME_ONE = "ABC";
@@ -70,7 +72,8 @@ public class CustomerControllerTest {
                 ));
 
         mockMvc.perform(get(AppConstant.CUSTOMERS_ROOT_PATH)
-                .contentType(MediaType.APPLICATION_JSON))
+                .contentType(MediaType.APPLICATION_JSON)
+        )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.customerDtoList", hasSize(2)));
     }
@@ -82,10 +85,28 @@ public class CustomerControllerTest {
                         CUSTOMER_LAST_NAME_ONE, CUSTOMER_URL_ONE));
 
         mockMvc.perform(get(CUSTOMER_URL_ONE)
-                .contentType(MediaType.APPLICATION_JSON))
+                .contentType(MediaType.APPLICATION_JSON)
+        )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName",
                         equalTo(CUSTOMER_FIRST_NAME_ONE)));
+    }
+
+    @Test
+    public void createNewCustomerTest() throws Exception {
+        CustomerDto customerDto = new CustomerDto(CUSTOMER_FIRST_NAME_ONE, CUSTOMER_LAST_NAME_ONE);
+        CustomerDto customerDtoNew = new CustomerDto(customerDto.getFirstName(),
+                customerDto.getLastName(), CUSTOMER_URL_ONE);
+
+        lenient().when(customerService.createNewCustomer(customerDto)).thenReturn(customerDtoNew);
+
+        mockMvc.perform(post(AppConstant.CUSTOMERS_ROOT_PATH)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(customerDto))
+        )
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.firstName", equalTo(CUSTOMER_FIRST_NAME_ONE)))
+                .andExpect(jsonPath("$.customerUrl", equalTo(CUSTOMER_URL_ONE)));
     }
 }
     
