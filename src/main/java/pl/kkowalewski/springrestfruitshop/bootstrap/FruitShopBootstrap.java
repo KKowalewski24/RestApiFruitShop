@@ -11,6 +11,13 @@ import pl.kkowalewski.springrestfruitshop.repository.CustomerRepository;
 public class FruitShopBootstrap implements CommandLineRunner {
 
     /*------------------------ FIELDS REGION ------------------------*/
+    public static final Long CUSTOMER_ID_ONE = 1L;
+    public static final Long CUSTOMER_ID_TWO = 2L;
+    public static final String CUSTOMER_FIRST_NAME_ONE = "Michale";
+    public static final String CUSTOMER_FIRST_NAME_TWO = "Sam";
+    public static final String CUSTOMER_LAST_NAME_ONE = "Weston";
+    public static final String CUSTOMER_LAST_NAME_TWO = "Axe";
+
     private final CategoryRepository categoryRepository;
     private final CustomerRepository customerRepository;
 
@@ -42,8 +49,10 @@ public class FruitShopBootstrap implements CommandLineRunner {
         Category fresh = prepareCategory("Fresh");
         Category exotic = prepareCategory("Exotic");
 
-        Customer customer1 = prepareCustomer(1L, "Michale", "Weston");
-        Customer customer2 = prepareCustomer(2L, "Sam", "Axe");
+        Customer customer1 = prepareCustomer(CUSTOMER_ID_ONE,
+                CUSTOMER_FIRST_NAME_ONE, CUSTOMER_LAST_NAME_ONE);
+        Customer customer2 = prepareCustomer(CUSTOMER_ID_TWO,
+                CUSTOMER_FIRST_NAME_TWO, CUSTOMER_LAST_NAME_TWO);
 
         System.out.println("Categories Loaded: " + categoryRepository.count());
         System.out.println("Customers Loaded: " + customerRepository.count());

@@ -15,6 +15,10 @@ public class CustomerDto {
     public CustomerDto() {
     }
 
+    public CustomerDto(String firstName) {
+        this.firstName = firstName;
+    }
+
     public CustomerDto(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
