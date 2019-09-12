@@ -81,8 +81,23 @@ public class CustomerServiceImplTest {
         CustomerDto savedDto = customerService.createNewCustomer(customerDto);
 
         assertEquals(customerDto.getFirstName(), savedDto.getFirstName());
-        assertEquals(AppConstant.CUSTOMERS_ROOT_PATH + CUSTOMER_ID,
-                savedDto.getCustomerUrl());
+        assertEquals(AppConstant.CUSTOMERS_ROOT_PATH
+                + AppConstant.SLASH + CUSTOMER_ID, savedDto.getCustomerUrl());
+    }
+
+    @Test
+    public void saveCustomerByDtoTest() {
+        CustomerDto customerDto = new CustomerDto(CUSTOMER_FIRST_NAME, CUSTOMER_LAST_NAME);
+        Customer customer = new Customer(CUSTOMER_ID,
+                customerDto.getFirstName(), customerDto.getLastName());
+
+        when(customerRepository.save(any(Customer.class))).thenReturn(customer);
+
+        CustomerDto savedDto = customerService.saveCustomerByDto(CUSTOMER_ID, customerDto);
+
+        assertEquals(customerDto.getFirstName(), savedDto.getFirstName());
+        assertEquals(AppConstant.CUSTOMERS_ROOT_PATH
+                + AppConstant.SLASH + CUSTOMER_ID, savedDto.getCustomerUrl());
     }
 }
     

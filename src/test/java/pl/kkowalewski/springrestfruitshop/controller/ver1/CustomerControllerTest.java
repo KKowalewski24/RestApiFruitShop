@@ -18,11 +18,11 @@ import java.util.List;
 
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.lenient;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
@@ -100,7 +100,7 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
         CustomerDto customerDtoNew = new CustomerDto(customerDto.getFirstName(),
                 customerDto.getLastName(), CUSTOMER_URL_ONE);
 
-        lenient().when(customerService.createNewCustomer(customerDto)).thenReturn(customerDtoNew);
+        when(customerService.createNewCustomer(customerDto)).thenReturn(customerDtoNew);
 
         mockMvc.perform(post(AppConstant.CUSTOMERS_ROOT_PATH)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -108,6 +108,24 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
         )
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.firstName", equalTo(CUSTOMER_FIRST_NAME_ONE)))
+                .andExpect(jsonPath("$.customerUrl", equalTo(CUSTOMER_URL_ONE)));
+    }
+
+    @Test
+    public void updateCustomerTest() throws Exception {
+        CustomerDto customerDto = new CustomerDto(CUSTOMER_FIRST_NAME_ONE, CUSTOMER_LAST_NAME_ONE);
+        CustomerDto customerDtoNew = new CustomerDto(customerDto.getFirstName(),
+                customerDto.getLastName(), CUSTOMER_URL_ONE);
+
+        when(customerService.saveCustomerByDto(anyLong(), any(CustomerDto.class))).thenReturn(customerDtoNew);
+
+        mockMvc.perform(put(CUSTOMER_URL_ONE)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(customerDto))
+        )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.firstName", equalTo(CUSTOMER_FIRST_NAME_ONE)))
+                .andExpect(jsonPath("$.lastName", equalTo(CUSTOMER_LAST_NAME_ONE)))
                 .andExpect(jsonPath("$.customerUrl", equalTo(CUSTOMER_URL_ONE)));
     }
 }

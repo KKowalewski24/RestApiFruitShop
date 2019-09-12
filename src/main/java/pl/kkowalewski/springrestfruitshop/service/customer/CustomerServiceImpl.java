@@ -24,6 +24,15 @@ public class CustomerServiceImpl implements CustomerService {
         this.customerRepository = customerRepository;
     }
 
+    private CustomerDto prepareCustomerDto(Customer customer) {
+        Customer customerSave = customerRepository.save(customer);
+        CustomerDto customerDto = customerMapper.customerToCustomerDto(customerSave);
+        customerDto.setCustomerUrl(AppConstant.CUSTOMERS_ROOT_PATH
+                + AppConstant.SLASH + customerSave.getId());
+
+        return customerDto;
+    }
+
     @Override
     public List<CustomerDto> getAllCustomers() {
         return customerRepository
@@ -45,13 +54,14 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDto createNewCustomer(CustomerDto customerDto) {
-        Customer customer = customerRepository.save(customerMapper
-                .customerDtoToCustomer(customerDto));
-        CustomerDto returnedCustomerDto = customerMapper
-                .customerToCustomerDto(customer);
+        return prepareCustomerDto(customerMapper.customerDtoToCustomer(customerDto));
+    }
 
-        returnedCustomerDto.setCustomerUrl(AppConstant.CUSTOMERS_ROOT_PATH + customer.getId());
+    @Override
+    public CustomerDto saveCustomerByDto(Long id, CustomerDto customerDto) {
+        Customer customer = customerMapper.customerDtoToCustomer(customerDto);
+        customer.setId(id);
 
-        return returnedCustomerDto;
+        return prepareCustomerDto(customer);
     }
 }
