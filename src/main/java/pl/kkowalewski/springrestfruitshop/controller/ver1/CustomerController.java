@@ -27,7 +27,7 @@ public class CustomerController {
                 customerService.getAllCustomers()), HttpStatus.OK);
     }
 
-    @GetMapping(AppConstant.SLASH + "{id}")
+    @GetMapping(AppConstant.SLASH + AppConstant.ID)
     public ResponseEntity<CustomerDto> getCustomerById(@PathVariable Long id) {
         return new ResponseEntity<>(customerService.getCustomerById(id), HttpStatus.OK);
     }
@@ -38,10 +38,24 @@ public class CustomerController {
                 .createNewCustomer(customerDto), HttpStatus.CREATED);
     }
 
-    @PutMapping(AppConstant.SLASH + "{id}")
-    public ResponseEntity<CustomerDto> updateCustomer(@PathVariable Long id,
-                                                      @RequestBody CustomerDto customerDto) {
+    @PutMapping(AppConstant.SLASH + AppConstant.ID)
+    public ResponseEntity<CustomerDto> updateCustomer(
+            @PathVariable Long id, @RequestBody CustomerDto customerDto) {
         return new ResponseEntity<>(customerService
                 .saveCustomerByDto(id, customerDto), HttpStatus.OK);
+    }
+
+    @PatchMapping(AppConstant.SLASH + AppConstant.ID)
+    public ResponseEntity<CustomerDto> patchCustomer(
+            @PathVariable Long id, @RequestBody CustomerDto customerDto) {
+        return new ResponseEntity<>(customerService
+                .patchCustomer(id, customerDto), HttpStatus.OK);
+    }
+
+    @DeleteMapping(AppConstant.SLASH + AppConstant.ID)
+    public ResponseEntity<Void> deleteCustomer(@PathVariable Long id) {
+        customerService.deleteCustomerById(id);
+
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

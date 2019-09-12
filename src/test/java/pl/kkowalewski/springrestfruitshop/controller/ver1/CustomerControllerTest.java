@@ -20,6 +20,7 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasSize;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -116,7 +117,8 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
         CustomerDto customerDtoNew = new CustomerDto(customerDto.getFirstName(),
                 customerDto.getLastName(), CUSTOMER_URL_ONE);
 
-        when(customerService.saveCustomerByDto(anyLong(), any(CustomerDto.class))).thenReturn(customerDtoNew);
+        when(customerService.saveCustomerByDto(anyLong(), any(CustomerDto.class)))
+                .thenReturn(customerDtoNew);
 
         mockMvc.perform(put(CUSTOMER_URL_ONE)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -126,6 +128,33 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
                 .andExpect(jsonPath("$.firstName", equalTo(CUSTOMER_FIRST_NAME_ONE)))
                 .andExpect(jsonPath("$.lastName", equalTo(CUSTOMER_LAST_NAME_ONE)))
                 .andExpect(jsonPath("$.customerUrl", equalTo(CUSTOMER_URL_ONE)));
+    }
+
+    @Test
+    public void patchCustomerTest() throws Exception {
+        CustomerDto customerDto = new CustomerDto(CUSTOMER_FIRST_NAME_ONE);
+        CustomerDto customerDtoNew = new CustomerDto(customerDto.getFirstName(),
+                CUSTOMER_LAST_NAME_ONE, CUSTOMER_URL_ONE);
+
+        when(customerService.patchCustomer(anyLong(), any(CustomerDto.class)))
+                .thenReturn(customerDtoNew);
+
+        mockMvc.perform(patch(CUSTOMER_URL_ONE)
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(asJsonString(customerDto))
+        )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.firstName", equalTo(CUSTOMER_FIRST_NAME_ONE)));
+    }
+
+    @Test
+    public void deleteCustomerTest() throws Exception {
+        mockMvc.perform(delete(CUSTOMER_URL_ONE)
+                .contentType(MediaType.APPLICATION_JSON)
+        )
+                .andExpect(status().isOk());
+
+        verify(customerService).deleteCustomerById(anyLong());
     }
 }
     
