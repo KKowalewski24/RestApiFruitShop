@@ -23,13 +23,13 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping
+    @GetMapping({AppConstant.ROOT, AppConstant.SLASH})
     public ResponseEntity<CategoryListDto> getAllCategories() {
         return new ResponseEntity<>(new CategoryListDto(
                 categoryService.getAllCategories()), HttpStatus.OK);
     }
 
-    @GetMapping("{name}")
+    @GetMapping(AppConstant.SLASH + "{name}")
     public ResponseEntity<CategoryDto> getCategoryByName(@PathVariable String name) {
         return new ResponseEntity<>(
                 categoryService.getCategoryByName(name), HttpStatus.OK);

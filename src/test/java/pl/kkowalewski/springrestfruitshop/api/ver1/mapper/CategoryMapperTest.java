@@ -19,7 +19,7 @@ public class CategoryMapperTest {
     @Test
     public void categoryToCategoryDTOTest() {
         CategoryDto categoryDto = categoryMapper
-                .categoryToCategoryDTO(new Category(CATEGORY_ID, NAME));
+                .categoryToCategoryDto(new Category(CATEGORY_ID, NAME));
 
         assertEquals(CATEGORY_ID, categoryDto.getId());
         assertEquals(NAME, categoryDto.getName());
@@ -27,7 +27,7 @@ public class CategoryMapperTest {
 
     @Test
     public void categoryToCategoryDTONullTest() {
-        CategoryDto categoryDto = categoryMapper.categoryToCategoryDTO(null);
+        CategoryDto categoryDto = categoryMapper.categoryToCategoryDto(null);
 
         assertNull(categoryDto);
     }

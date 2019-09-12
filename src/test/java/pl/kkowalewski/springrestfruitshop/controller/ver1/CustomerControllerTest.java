@@ -34,8 +34,10 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
     private static final String CUSTOMER_FIRST_NAME_TWO = "XYZ";
     private static final String CUSTOMER_LAST_NAME_ONE = "CDE";
     private static final String CUSTOMER_LAST_NAME_TWO = "GEF";
-    private static final String CUSTOMER_URL_ONE = AppConstant.CUSTOMERS_ROOT_PATH + 1;
-    private static final String CUSTOMER_URL_TWO = AppConstant.CUSTOMERS_ROOT_PATH + 2;
+    private static final String CUSTOMER_URL_ONE = AppConstant.CUSTOMERS_ROOT_PATH
+            + AppConstant.SLASH + 1;
+    private static final String CUSTOMER_URL_TWO = AppConstant.CUSTOMERS_ROOT_PATH
+            + AppConstant.SLASH + 2;
 
     @Mock
     private CustomerService customerService;

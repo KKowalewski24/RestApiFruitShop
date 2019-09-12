@@ -21,18 +21,18 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping
+    @GetMapping({AppConstant.ROOT, AppConstant.SLASH})
     public ResponseEntity<CustomerListDto> getListOfCustomers() {
         return new ResponseEntity<>(new CustomerListDto(
                 customerService.getAllCustomers()), HttpStatus.OK);
     }
 
-    @GetMapping("{id}")
+    @GetMapping(AppConstant.SLASH + "{id}")
     public ResponseEntity<CustomerDto> getCustomerById(@PathVariable Long id) {
         return new ResponseEntity<>(customerService.getCustomerById(id), HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping({AppConstant.ROOT, AppConstant.SLASH})
     public ResponseEntity<CustomerDto> createNewCustomer(@RequestBody CustomerDto customerDto) {
         return new ResponseEntity<>(customerService
                 .createNewCustomer(customerDto), HttpStatus.CREATED);

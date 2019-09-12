@@ -18,7 +18,7 @@ public class CustomerMapperTest {
 
     /*------------------------ METHODS REGION ------------------------*/
     @Test
-    public void customerToCustomerDTOTest() {
+    public void customerToCustomerDtoTest() {
         CustomerDto customerDto = customerMapper
                 .customerToCustomerDto(new Customer(ID, FIRST_NAME, LAST_NAME));
 
@@ -27,10 +27,26 @@ public class CustomerMapperTest {
     }
 
     @Test
-    public void customerToCustomerDTONullTest() {
+    public void customerToCustomerDtoNullTest() {
         CustomerDto customerDto = customerMapper.customerToCustomerDto(null);
 
         assertNull(customerDto);
+    }
+
+    @Test
+    public void customerDtoToCustomerTest() {
+        Customer customer = customerMapper
+                .customerDtoToCustomer(new CustomerDto(FIRST_NAME, LAST_NAME));
+
+        assertEquals(FIRST_NAME, customer.getFirstName());
+        assertEquals(LAST_NAME, customer.getLastName());
+    }
+
+    @Test
+    public void customerDtoToCustomerNullTest() {
+        Customer customer = customerMapper.customerDtoToCustomer(null);
+
+        assertNull(customer);
     }
 }
     

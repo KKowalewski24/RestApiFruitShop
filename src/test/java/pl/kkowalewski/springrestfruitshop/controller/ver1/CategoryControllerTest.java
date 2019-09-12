@@ -76,7 +76,8 @@ public class CategoryControllerTest {
         when(categoryService.getCategoryByName(anyString()))
                 .thenReturn(new CategoryDto(CATEGORY_ID_ONE, CATEGORY_NAME_ONE));
 
-        mockMvc.perform(get(AppConstant.CATEGORY_ROOT_PATH + CATEGORY_NAME_ONE)
+        mockMvc.perform(get(AppConstant.CATEGORY_ROOT_PATH
+                + AppConstant.SLASH + CATEGORY_NAME_ONE)
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", equalTo(CATEGORY_NAME_ONE)));
