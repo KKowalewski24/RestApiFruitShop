@@ -6,13 +6,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import pl.kkowalewski.springrestfruitshop.AppConstant;
 import pl.kkowalewski.springrestfruitshop.api.ver1.model.category.CategoryDto;
 import pl.kkowalewski.springrestfruitshop.api.ver1.model.category.CategoryListDto;
 import pl.kkowalewski.springrestfruitshop.service.category.CategoryService;
 
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.CATEGORY_ROOT_PATH;
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.NAME;
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.ROOT;
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.SLASH;
+
 @RestController
-@RequestMapping(AppConstant.CATEGORY_ROOT_PATH)
+@RequestMapping(CATEGORY_ROOT_PATH)
 public class CategoryController {
 
     /*------------------------ FIELDS REGION ------------------------*/
@@ -23,13 +27,13 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping({AppConstant.ROOT, AppConstant.SLASH})
+    @GetMapping({ROOT, SLASH})
     @ResponseStatus(HttpStatus.OK)
     public CategoryListDto getAllCategories() {
         return new CategoryListDto(categoryService.getAllCategories());
     }
 
-    @GetMapping(AppConstant.SLASH + AppConstant.NAME)
+    @GetMapping(SLASH + NAME)
     @ResponseStatus(HttpStatus.OK)
     public CategoryDto getCategoryByName(@PathVariable String name) {
         return categoryService.getCategoryByName(name);

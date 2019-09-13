@@ -9,7 +9,6 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import pl.kkowalewski.springrestfruitshop.AppConstant;
 import pl.kkowalewski.springrestfruitshop.api.ver1.model.customer.CustomerDto;
 import pl.kkowalewski.springrestfruitshop.controller.RestResponseEntityExceptionHandler;
 import pl.kkowalewski.springrestfruitshop.exception.ResourceNotFoundException;
@@ -31,6 +30,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.CUSTOMERS_ROOT_PATH;
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.SLASH;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CustomerControllerTest extends AbstractRestControllerTest {
@@ -40,10 +41,8 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
     private static final String CUSTOMER_FIRST_NAME_TWO = "XYZ";
     private static final String CUSTOMER_LAST_NAME_ONE = "CDE";
     private static final String CUSTOMER_LAST_NAME_TWO = "GEF";
-    private static final String CUSTOMER_URL_ONE = AppConstant.CUSTOMERS_ROOT_PATH
-            + AppConstant.SLASH + 1;
-    private static final String CUSTOMER_URL_TWO = AppConstant.CUSTOMERS_ROOT_PATH
-            + AppConstant.SLASH + 2;
+    private static final String CUSTOMER_URL_ONE = CUSTOMERS_ROOT_PATH + SLASH + 1;
+    private static final String CUSTOMER_URL_TWO = CUSTOMERS_ROOT_PATH + SLASH + 2;
 
     @Mock
     private CustomerService customerService;
@@ -81,7 +80,7 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
                                 CUSTOMER_LAST_NAME_TWO, CUSTOMER_URL_TWO)
                 ));
 
-        mockMvc.perform(get(AppConstant.CUSTOMERS_ROOT_PATH)
+        mockMvc.perform(get(CUSTOMERS_ROOT_PATH)
                 .contentType(MediaType.APPLICATION_JSON)
         )
                 .andExpect(status().isOk())
@@ -107,8 +106,7 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
         when(customerService.getCustomerById(anyLong()))
                 .thenThrow(ResourceNotFoundException.class);
 
-        mockMvc.perform(get(AppConstant.CUSTOMERS_ROOT_PATH
-                + AppConstant.SLASH + "-1024")
+        mockMvc.perform(get(CUSTOMERS_ROOT_PATH + SLASH + "-1024")
                 .contentType(MediaType.APPLICATION_JSON)
         )
                 .andExpect(status().isNotFound());
@@ -122,7 +120,7 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
 
         when(customerService.createNewCustomer(customerDto)).thenReturn(customerDtoNew);
 
-        mockMvc.perform(post(AppConstant.CUSTOMERS_ROOT_PATH)
+        mockMvc.perform(post(CUSTOMERS_ROOT_PATH)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(customerDto))
         )

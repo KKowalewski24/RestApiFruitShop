@@ -11,13 +11,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import pl.kkowalewski.springrestfruitshop.AppConstant;
 import pl.kkowalewski.springrestfruitshop.api.ver1.model.vendor.VendorDto;
 import pl.kkowalewski.springrestfruitshop.api.ver1.model.vendor.VendorListDto;
 import pl.kkowalewski.springrestfruitshop.service.vendor.VendorService;
 
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.ID;
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.ROOT;
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.SLASH;
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.VENDORS_ROOT_PATH;
+
 @RestController
-@RequestMapping(AppConstant.VENDORS_ROOT_PATH)
+@RequestMapping(VENDORS_ROOT_PATH)
 public class VendorController {
 
     /*------------------------ FIELDS REGION ------------------------*/
@@ -28,39 +32,37 @@ public class VendorController {
         this.vendorService = vendorService;
     }
 
-    @GetMapping({AppConstant.ROOT, AppConstant.SLASH})
+    @GetMapping({ROOT, SLASH})
     @ResponseStatus(HttpStatus.OK)
     public VendorListDto getVendorList() {
         return vendorService.getAllVendors();
     }
 
-    @GetMapping(AppConstant.SLASH + AppConstant.ID)
+    @GetMapping(SLASH + ID)
     @ResponseStatus(HttpStatus.OK)
     public VendorDto getVendorById(@PathVariable Long id) {
         return vendorService.getVendorById(id);
     }
 
-    @PostMapping({AppConstant.ROOT, AppConstant.SLASH})
+    @PostMapping({ROOT, SLASH})
     @ResponseStatus(HttpStatus.CREATED)
     public VendorDto createNewVendor(@RequestBody VendorDto vendorDto) {
         return vendorService.createNewVendor(vendorDto);
     }
 
-    @PutMapping(AppConstant.SLASH + AppConstant.ID)
+    @PutMapping(SLASH + ID)
     @ResponseStatus(HttpStatus.OK)
-    public VendorDto updateVendor(@PathVariable Long id,
-                                  @RequestBody VendorDto vendorDto) {
+    public VendorDto updateVendor(@PathVariable Long id, @RequestBody VendorDto vendorDto) {
         return vendorService.saveVendorByDto(id, vendorDto);
     }
 
-    @PatchMapping(AppConstant.SLASH + AppConstant.ID)
+    @PatchMapping(SLASH + ID)
     @ResponseStatus(HttpStatus.OK)
-    public VendorDto patchVendor(@PathVariable Long id,
-                                 @RequestBody VendorDto vendorDto) {
+    public VendorDto patchVendor(@PathVariable Long id, @RequestBody VendorDto vendorDto) {
         return vendorService.saveVendorByDto(id, vendorDto);
     }
 
-    @DeleteMapping(AppConstant.SLASH + AppConstant.ID)
+    @DeleteMapping(SLASH + ID)
     @ResponseStatus(HttpStatus.OK)
     public void deleteVendor(@PathVariable Long id) {
         vendorService.deleteVendorById(id);

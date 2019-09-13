@@ -1,7 +1,6 @@
 package pl.kkowalewski.springrestfruitshop.service.vendor;
 
 import org.springframework.stereotype.Service;
-import pl.kkowalewski.springrestfruitshop.AppConstant;
 import pl.kkowalewski.springrestfruitshop.api.ver1.mapper.VendorMapper;
 import pl.kkowalewski.springrestfruitshop.api.ver1.model.vendor.VendorDto;
 import pl.kkowalewski.springrestfruitshop.api.ver1.model.vendor.VendorListDto;
@@ -12,6 +11,9 @@ import pl.kkowalewski.springrestfruitshop.repository.VendorRepository;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.SLASH;
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.VENDORS_ROOT_PATH;
+
 @Service
 public class VendorServiceImpl implements VendorService {
 
@@ -20,8 +22,7 @@ public class VendorServiceImpl implements VendorService {
     private final VendorRepository vendorRepository;
 
     /*------------------------ METHODS REGION ------------------------*/
-    public VendorServiceImpl(VendorMapper vendorMapper,
-                             VendorRepository vendorRepository) {
+    public VendorServiceImpl(VendorMapper vendorMapper, VendorRepository vendorRepository) {
         this.vendorMapper = vendorMapper;
         this.vendorRepository = vendorRepository;
     }
@@ -29,8 +30,7 @@ public class VendorServiceImpl implements VendorService {
     private VendorDto prepareVendorDto(Vendor vendor) {
         Vendor vendorSave = vendorRepository.save(vendor);
         VendorDto vendorDto = vendorMapper.vendorToVendorDto(vendorSave);
-        vendorDto.setVendorUrl(AppConstant.VENDORS_ROOT_PATH
-                + AppConstant.SLASH + vendorSave.getId());
+        vendorDto.setVendorUrl(VENDORS_ROOT_PATH + SLASH + vendorSave.getId());
 
         return vendorDto;
     }
@@ -40,8 +40,7 @@ public class VendorServiceImpl implements VendorService {
         return vendorRepository.findById(id)
                 .map(vendorMapper::vendorToVendorDto)
                 .map(vendorDto -> {
-                    vendorDto.setVendorUrl(AppConstant.VENDORS_ROOT_PATH
-                            + AppConstant.SLASH + id);
+                    vendorDto.setVendorUrl(VENDORS_ROOT_PATH + SLASH + id);
                     return vendorDto;
                 }).orElseThrow(ResourceNotFoundException::new);
     }
@@ -53,8 +52,7 @@ public class VendorServiceImpl implements VendorService {
                 .stream()
                 .map(vendor -> {
                     VendorDto vendorDto = vendorMapper.vendorToVendorDto(vendor);
-                    vendorDto.setVendorUrl(AppConstant.VENDORS_ROOT_PATH
-                            + AppConstant.SLASH + vendor.getId());
+                    vendorDto.setVendorUrl(VENDORS_ROOT_PATH + SLASH + vendor.getId());
                     return vendorDto;
                 }).collect(Collectors.toList());
 

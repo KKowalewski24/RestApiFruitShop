@@ -11,13 +11,17 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import pl.kkowalewski.springrestfruitshop.AppConstant;
 import pl.kkowalewski.springrestfruitshop.api.ver1.model.customer.CustomerDto;
 import pl.kkowalewski.springrestfruitshop.api.ver1.model.customer.CustomerListDto;
 import pl.kkowalewski.springrestfruitshop.service.customer.CustomerService;
 
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.CUSTOMERS_ROOT_PATH;
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.ID;
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.ROOT;
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.SLASH;
+
 @RestController
-@RequestMapping(AppConstant.CUSTOMERS_ROOT_PATH)
+@RequestMapping(CUSTOMERS_ROOT_PATH)
 public class CustomerController {
 
     /*------------------------ FIELDS REGION ------------------------*/
@@ -28,39 +32,37 @@ public class CustomerController {
         this.customerService = customerService;
     }
 
-    @GetMapping({AppConstant.ROOT, AppConstant.SLASH})
+    @GetMapping({ROOT, SLASH})
     @ResponseStatus(HttpStatus.OK)
     public CustomerListDto getListOfCustomers() {
         return new CustomerListDto(customerService.getAllCustomers());
     }
 
-    @GetMapping(AppConstant.SLASH + AppConstant.ID)
+    @GetMapping(SLASH + ID)
     @ResponseStatus(HttpStatus.OK)
     public CustomerDto getCustomerById(@PathVariable Long id) {
         return customerService.getCustomerById(id);
     }
 
-    @PostMapping({AppConstant.ROOT, AppConstant.SLASH})
+    @PostMapping({ROOT, SLASH})
     @ResponseStatus(HttpStatus.CREATED)
     public CustomerDto createNewCustomer(@RequestBody CustomerDto customerDto) {
         return customerService.createNewCustomer(customerDto);
     }
 
-    @PutMapping(AppConstant.SLASH + AppConstant.ID)
+    @PutMapping(SLASH + ID)
     @ResponseStatus(HttpStatus.OK)
-    public CustomerDto updateCustomer(@PathVariable Long id,
-                                      @RequestBody CustomerDto customerDto) {
+    public CustomerDto updateCustomer(@PathVariable Long id, @RequestBody CustomerDto customerDto) {
         return customerService.saveCustomerByDto(id, customerDto);
     }
 
-    @PatchMapping(AppConstant.SLASH + AppConstant.ID)
+    @PatchMapping(SLASH + ID)
     @ResponseStatus(HttpStatus.OK)
-    public CustomerDto patchCustomer(@PathVariable Long id,
-                                     @RequestBody CustomerDto customerDto) {
+    public CustomerDto patchCustomer(@PathVariable Long id, @RequestBody CustomerDto customerDto) {
         return customerService.patchCustomer(id, customerDto);
     }
 
-    @DeleteMapping(AppConstant.SLASH + AppConstant.ID)
+    @DeleteMapping(SLASH + ID)
     @ResponseStatus(HttpStatus.OK)
     public void deleteCustomer(@PathVariable Long id) {
         customerService.deleteCustomerById(id);

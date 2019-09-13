@@ -5,7 +5,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import pl.kkowalewski.springrestfruitshop.AppConstant;
 import pl.kkowalewski.springrestfruitshop.api.ver1.mapper.CustomerMapper;
 import pl.kkowalewski.springrestfruitshop.api.ver1.model.customer.CustomerDto;
 import pl.kkowalewski.springrestfruitshop.model.Customer;
@@ -20,6 +19,8 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.CUSTOMERS_ROOT_PATH;
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.SLASH;
 
 @RunWith(MockitoJUnitRunner.class)
 public class CustomerServiceImplTest {
@@ -37,8 +38,7 @@ public class CustomerServiceImplTest {
     /*------------------------ METHODS REGION ------------------------*/
     @Before
     public void setUp() {
-        customerService = new CustomerServiceImpl(
-                CustomerMapper.INSTANCE, customerRepository);
+        customerService = new CustomerServiceImpl(CustomerMapper.INSTANCE, customerRepository);
     }
 
     private List<Customer> prepareCustomerList(Customer... customers) {
@@ -82,8 +82,7 @@ public class CustomerServiceImplTest {
         CustomerDto savedDto = customerService.createNewCustomer(customerDto);
 
         assertEquals(customerDto.getFirstName(), savedDto.getFirstName());
-        assertEquals(AppConstant.CUSTOMERS_ROOT_PATH
-                + AppConstant.SLASH + CUSTOMER_ID, savedDto.getCustomerUrl());
+        assertEquals(CUSTOMERS_ROOT_PATH + SLASH + CUSTOMER_ID, savedDto.getCustomerUrl());
     }
 
     @Test
@@ -97,8 +96,7 @@ public class CustomerServiceImplTest {
         CustomerDto savedDto = customerService.saveCustomerByDto(CUSTOMER_ID, customerDto);
 
         assertEquals(customerDto.getFirstName(), savedDto.getFirstName());
-        assertEquals(AppConstant.CUSTOMERS_ROOT_PATH
-                + AppConstant.SLASH + CUSTOMER_ID, savedDto.getCustomerUrl());
+        assertEquals(CUSTOMERS_ROOT_PATH + SLASH + CUSTOMER_ID, savedDto.getCustomerUrl());
     }
 
     @Test

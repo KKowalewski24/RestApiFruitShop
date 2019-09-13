@@ -9,7 +9,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import pl.kkowalewski.springrestfruitshop.AppConstant;
 import pl.kkowalewski.springrestfruitshop.api.ver1.model.vendor.VendorDto;
 import pl.kkowalewski.springrestfruitshop.api.ver1.model.vendor.VendorListDto;
 import pl.kkowalewski.springrestfruitshop.service.vendor.VendorService;
@@ -30,6 +29,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.SLASH;
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.VENDORS_ROOT_PATH;
 import static pl.kkowalewski.springrestfruitshop.controller.ver1.AbstractRestControllerTest.asJsonString;
 
 @RunWith(SpringRunner.class)
@@ -39,10 +40,8 @@ public class VendorControllerTest {
     /*------------------------ FIELDS REGION ------------------------*/
     private static final String NAME_ONE = "ABC";
     private static final String NAME_TWO = "CDE";
-    private static final String URL_ONE =
-            AppConstant.VENDORS_ROOT_PATH + AppConstant.SLASH + 1;
-    private static final String URL_TWO =
-            AppConstant.VENDORS_ROOT_PATH + AppConstant.SLASH + 2;
+    private static final String URL_ONE = VENDORS_ROOT_PATH + SLASH + 1;
+    private static final String URL_TWO = VENDORS_ROOT_PATH + SLASH + 2;
 
     @MockBean
     private VendorService vendorService;
@@ -75,7 +74,7 @@ public class VendorControllerTest {
         given(vendorService.getAllVendors())
                 .willReturn(prepareVendorDtoList(vendorDtoOne, vendorDtoTwo));
 
-        mockMvc.perform(get(AppConstant.VENDORS_ROOT_PATH)
+        mockMvc.perform(get(VENDORS_ROOT_PATH)
                 .contentType(MediaType.APPLICATION_JSON)
         )
                 .andExpect(status().isOk())
@@ -84,8 +83,7 @@ public class VendorControllerTest {
 
     @Test
     public void getVendorByIdTest() throws Exception {
-        given(vendorService.getVendorById(anyLong()))
-                .willReturn(vendorDtoOne);
+        given(vendorService.getVendorById(anyLong())).willReturn(vendorDtoOne);
 
         mockMvc.perform(get(URL_ONE)
                 .contentType(MediaType.APPLICATION_JSON)
@@ -98,7 +96,7 @@ public class VendorControllerTest {
     public void createNewVendorTest() throws Exception {
         given(vendorService.createNewVendor(vendorDtoOne)).willReturn(vendorDtoOne);
 
-        mockMvc.perform(post(AppConstant.VENDORS_ROOT_PATH)
+        mockMvc.perform(post(VENDORS_ROOT_PATH)
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(asJsonString(vendorDtoOne))
         )

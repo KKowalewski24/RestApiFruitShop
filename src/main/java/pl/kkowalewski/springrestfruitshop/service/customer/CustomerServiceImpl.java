@@ -1,7 +1,6 @@
 package pl.kkowalewski.springrestfruitshop.service.customer;
 
 import org.springframework.stereotype.Service;
-import pl.kkowalewski.springrestfruitshop.AppConstant;
 import pl.kkowalewski.springrestfruitshop.api.ver1.mapper.CustomerMapper;
 import pl.kkowalewski.springrestfruitshop.api.ver1.model.customer.CustomerDto;
 import pl.kkowalewski.springrestfruitshop.exception.ResourceNotFoundException;
@@ -10,6 +9,9 @@ import pl.kkowalewski.springrestfruitshop.repository.CustomerRepository;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.CUSTOMERS_ROOT_PATH;
+import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.SLASH;
 
 @Service
 public class CustomerServiceImpl implements CustomerService {
@@ -28,8 +30,7 @@ public class CustomerServiceImpl implements CustomerService {
     private CustomerDto prepareCustomerDto(Customer customer) {
         Customer customerSave = customerRepository.save(customer);
         CustomerDto customerDto = customerMapper.customerToCustomerDto(customerSave);
-        customerDto.setCustomerUrl(AppConstant.CUSTOMERS_ROOT_PATH
-                + AppConstant.SLASH + customerSave.getId());
+        customerDto.setCustomerUrl(CUSTOMERS_ROOT_PATH + SLASH + customerSave.getId());
 
         return customerDto;
     }
@@ -41,7 +42,7 @@ public class CustomerServiceImpl implements CustomerService {
                 .stream()
                 .map(customer -> {
                     CustomerDto customerDto = customerMapper.customerToCustomerDto(customer);
-                    customerDto.setCustomerUrl(AppConstant.CUSTOMERS_ROOT_PATH + customer.getId());
+                    customerDto.setCustomerUrl(CUSTOMERS_ROOT_PATH + customer.getId());
                     return customerDto;
                 }).collect(Collectors.toList());
     }
@@ -77,7 +78,7 @@ public class CustomerServiceImpl implements CustomerService {
 
             CustomerDto customerDtoSave = customerMapper
                     .customerToCustomerDto(customerRepository.save(customer));
-            customerDtoSave.setCustomerUrl(AppConstant.CUSTOMERS_ROOT_PATH + AppConstant.SLASH + id);
+            customerDtoSave.setCustomerUrl(CUSTOMERS_ROOT_PATH + SLASH + id);
 
             return customerDtoSave;
         }).orElseThrow(ResourceNotFoundException::new);

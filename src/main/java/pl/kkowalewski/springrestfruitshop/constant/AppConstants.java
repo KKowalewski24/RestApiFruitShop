@@ -1,6 +1,6 @@
-package pl.kkowalewski.springrestfruitshop;
+package pl.kkowalewski.springrestfruitshop.constant;
 
-public class AppConstant {
+public class AppConstants {
 
     /*------------------------ FIELDS REGION ------------------------*/
     public static final String ROOT = "";
