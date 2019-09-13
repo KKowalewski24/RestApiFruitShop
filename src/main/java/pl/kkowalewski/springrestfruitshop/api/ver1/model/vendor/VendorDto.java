@@ -1,5 +1,6 @@
 package pl.kkowalewski.springrestfruitshop.api.ver1.model.vendor;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -8,6 +9,8 @@ public class VendorDto {
 
     /*------------------------ FIELDS REGION ------------------------*/
     private String name;
+
+    @JsonProperty("vendor_url")
     private String vendorUrl;
 
     /*------------------------ METHODS REGION ------------------------*/

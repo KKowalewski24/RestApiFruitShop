@@ -126,7 +126,7 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
         )
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.firstName", equalTo(CUSTOMER_FIRST_NAME_ONE)))
-                .andExpect(jsonPath("$.customerUrl", equalTo(CUSTOMER_URL_ONE)));
+                .andExpect(jsonPath("$.customer_url", equalTo(CUSTOMER_URL_ONE)));
     }
 
     @Test
@@ -145,7 +145,7 @@ public class CustomerControllerTest extends AbstractRestControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.firstName", equalTo(CUSTOMER_FIRST_NAME_ONE)))
                 .andExpect(jsonPath("$.lastName", equalTo(CUSTOMER_LAST_NAME_ONE)))
-                .andExpect(jsonPath("$.customerUrl", equalTo(CUSTOMER_URL_ONE)));
+                .andExpect(jsonPath("$.customer_url", equalTo(CUSTOMER_URL_ONE)));
     }
 
     @Test

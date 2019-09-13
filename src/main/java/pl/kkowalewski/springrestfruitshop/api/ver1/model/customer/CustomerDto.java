@@ -1,5 +1,6 @@
 package pl.kkowalewski.springrestfruitshop.api.ver1.model.customer;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -9,6 +10,8 @@ public class CustomerDto {
     /*------------------------ FIELDS REGION ------------------------*/
     private String firstName;
     private String lastName;
+
+    @JsonProperty("customer_url")
     private String customerUrl;
 
     /*------------------------ METHODS REGION ------------------------*/
