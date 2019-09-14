@@ -1,5 +1,6 @@
 package pl.kkowalewski.springrestfruitshop.api.ver1.model.category;
 
+import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -7,7 +8,10 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class CategoryDto {
 
     /*------------------------ FIELDS REGION ------------------------*/
+    @ApiModelProperty(value = "Category ID", required = true)
     private Long id;
+
+    @ApiModelProperty(value = "Category Name", required = true)
     private String name;
 
     /*------------------------ METHODS REGION ------------------------*/

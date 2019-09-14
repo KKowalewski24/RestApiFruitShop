@@ -1,5 +1,7 @@
 package pl.kkowalewski.springrestfruitshop.controller.ver1;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +17,7 @@ import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.NAME;
 import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.ROOT;
 import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.SLASH;
 
+@Api(description = "Category API")
 @RestController
 @RequestMapping(CATEGORY_ROOT_PATH)
 public class CategoryController {
@@ -27,12 +30,14 @@ public class CategoryController {
         this.categoryService = categoryService;
     }
 
+    @ApiOperation(value = "View List of Categories")
     @GetMapping({ROOT, SLASH})
     @ResponseStatus(HttpStatus.OK)
     public CategoryListDto getAllCategories() {
         return new CategoryListDto(categoryService.getAllCategories());
     }
 
+    @ApiOperation(value = "Get Category By Name")
     @GetMapping(SLASH + NAME)
     @ResponseStatus(HttpStatus.OK)
     public CategoryDto getCategoryByName(@PathVariable String name) {

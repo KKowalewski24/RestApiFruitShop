@@ -17,3 +17,9 @@ Project has been initialized with Spring Initializr https://start.spring.io/
 * JaCoCo
 * Checkstyle
 * Commons-lang3
+
+#### Fruit Shop API  Swagger Docs
+##### Controllers
+![](FruitShopDocs_1.png)
+##### Model
+![](FruitShopDocs_2.png)

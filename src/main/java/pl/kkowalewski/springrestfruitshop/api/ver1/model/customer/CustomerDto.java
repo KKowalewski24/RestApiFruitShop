@@ -1,6 +1,7 @@
 package pl.kkowalewski.springrestfruitshop.api.ver1.model.customer;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -8,9 +9,13 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class CustomerDto {
 
     /*------------------------ FIELDS REGION ------------------------*/
+    @ApiModelProperty(value = "Customer First Name", required = true)
     private String firstName;
+
+    @ApiModelProperty(value = "Customer Last Name", required = true)
     private String lastName;
 
+    @ApiModelProperty(value = "Customer URL", required = true)
     @JsonProperty("customer_url")
     private String customerUrl;
 
