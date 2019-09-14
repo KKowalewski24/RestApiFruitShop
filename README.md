@@ -19,7 +19,7 @@ Project has been initialized with Spring Initializr https://start.spring.io/
 * Commons-lang3
 
 #### Fruit Shop API  Swagger Docs
-##### Controllers
-![](FruitShopDocs_1.png)
+##### Controller
+![](assets/FruitShopDocs_1.png)
 ##### Model
-![](FruitShopDocs_2.png)
+![](assets/FruitShopDocs_2.png)
