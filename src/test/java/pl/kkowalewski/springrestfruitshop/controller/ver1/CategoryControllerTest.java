@@ -71,7 +71,9 @@ public class CategoryControllerTest {
                 ));
 
         mockMvc.perform(get(CATEGORY_ROOT_PATH)
-                .contentType(MediaType.APPLICATION_JSON))
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+        )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.categoryDtoList", hasSize(2)));
     }
@@ -82,7 +84,9 @@ public class CategoryControllerTest {
                 .thenReturn(new CategoryDto(CATEGORY_ID_ONE, CATEGORY_NAME_ONE));
 
         mockMvc.perform(get(CATEGORY_ROOT_PATH + SLASH + CATEGORY_NAME_ONE)
-                .contentType(MediaType.APPLICATION_JSON))
+                .accept(MediaType.APPLICATION_JSON)
+                .contentType(MediaType.APPLICATION_JSON)
+        )
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.name", equalTo(CATEGORY_NAME_ONE)));
     }
