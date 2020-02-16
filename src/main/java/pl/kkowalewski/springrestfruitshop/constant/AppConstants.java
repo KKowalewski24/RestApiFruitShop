@@ -20,5 +20,7 @@ public class AppConstants {
     public static final String VENDORS_ROOT_PATH = SLASH + API + SLASH + VER1 + SLASH + VENDORS;
 
     /*------------------------ METHODS REGION ------------------------*/
+    private AppConstants() {
 
+    }
 }
