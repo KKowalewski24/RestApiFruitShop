@@ -1,7 +1,7 @@
 package pl.kkowalewski.springrestfruitshop.service.vendor;
 
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.vendor.VendorDto;
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.vendor.VendorListDto;
+import pl.kkowalewski.springrestfruitshop.api.v1.model.vendor.VendorDto;
+import pl.kkowalewski.springrestfruitshop.api.v1.model.vendor.VendorListDto;
 
 public interface VendorService {
 

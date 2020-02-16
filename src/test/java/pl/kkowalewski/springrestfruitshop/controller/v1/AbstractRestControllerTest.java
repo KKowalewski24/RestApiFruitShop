@@ -1,4 +1,4 @@
-package pl.kkowalewski.springrestfruitshop.controller.ver1;
+package pl.kkowalewski.springrestfruitshop.controller.v1;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

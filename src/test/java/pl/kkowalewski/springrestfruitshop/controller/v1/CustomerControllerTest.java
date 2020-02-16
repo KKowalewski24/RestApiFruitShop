@@ -1,4 +1,4 @@
-package pl.kkowalewski.springrestfruitshop.controller.ver1;
+package pl.kkowalewski.springrestfruitshop.controller.v1;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -9,7 +9,7 @@ import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.customer.CustomerDto;
+import pl.kkowalewski.springrestfruitshop.api.v1.model.customer.CustomerDto;
 import pl.kkowalewski.springrestfruitshop.controller.RestResponseEntityExceptionHandler;
 import pl.kkowalewski.springrestfruitshop.exception.ResourceNotFoundException;
 import pl.kkowalewski.springrestfruitshop.service.customer.CustomerService;

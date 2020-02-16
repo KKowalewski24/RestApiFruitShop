@@ -1,7 +1,7 @@
-package pl.kkowalewski.springrestfruitshop.api.ver1.mapper;
+package pl.kkowalewski.springrestfruitshop.api.v1.mapper;
 
 import org.junit.Test;
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.customer.CustomerDto;
+import pl.kkowalewski.springrestfruitshop.api.v1.model.customer.CustomerDto;
 import pl.kkowalewski.springrestfruitshop.model.Customer;
 
 import static org.junit.Assert.assertEquals;

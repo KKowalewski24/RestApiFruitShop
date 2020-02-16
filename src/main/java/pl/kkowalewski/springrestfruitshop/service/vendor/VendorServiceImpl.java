@@ -1,9 +1,9 @@
 package pl.kkowalewski.springrestfruitshop.service.vendor;
 
 import org.springframework.stereotype.Service;
-import pl.kkowalewski.springrestfruitshop.api.ver1.mapper.VendorMapper;
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.vendor.VendorDto;
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.vendor.VendorListDto;
+import pl.kkowalewski.springrestfruitshop.api.v1.mapper.VendorMapper;
+import pl.kkowalewski.springrestfruitshop.api.v1.model.vendor.VendorDto;
+import pl.kkowalewski.springrestfruitshop.api.v1.model.vendor.VendorListDto;
 import pl.kkowalewski.springrestfruitshop.exception.ResourceNotFoundException;
 import pl.kkowalewski.springrestfruitshop.model.Vendor;
 import pl.kkowalewski.springrestfruitshop.repository.VendorRepository;

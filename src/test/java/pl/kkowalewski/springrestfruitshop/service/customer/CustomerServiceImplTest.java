@@ -5,8 +5,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
-import pl.kkowalewski.springrestfruitshop.api.ver1.mapper.CustomerMapper;
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.customer.CustomerDto;
+import pl.kkowalewski.springrestfruitshop.api.v1.mapper.CustomerMapper;
+import pl.kkowalewski.springrestfruitshop.api.v1.model.customer.CustomerDto;
 import pl.kkowalewski.springrestfruitshop.model.Customer;
 import pl.kkowalewski.springrestfruitshop.repository.CustomerRepository;
 
