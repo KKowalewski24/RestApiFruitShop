@@ -120,6 +120,19 @@ public class VendorServiceImplTest {
     }
 
     @Test
+    public void patchVendorNullNameTest() {
+        given(vendorRepository.findById(anyLong())).willReturn(Optional.of(vendorOne));
+        given(vendorRepository.save(any(Vendor.class))).willReturn(vendorOne);
+
+        VendorDto vendorDto = vendorService.patchVendor(ID_ONE, new VendorDto(null));
+
+        then(vendorRepository).should().save(any(Vendor.class));
+        then(vendorRepository).should().findById(anyLong());
+
+        assertThat(vendorDto.getVendorUrl(), containsString("1"));
+    }
+
+    @Test
     public void deleteVendorByIdTest() {
         vendorService.deleteVendorById(ID_ONE);
 
