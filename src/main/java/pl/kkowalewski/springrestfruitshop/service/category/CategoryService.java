@@ -1,6 +1,6 @@
 package pl.kkowalewski.springrestfruitshop.service.category;
 
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.category.CategoryDto;
+import pl.kkowalewski.springrestfruitshop.api.v1.model.category.CategoryDto;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
 package pl.kkowalewski.springrestfruitshop.service.customer;
 
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.customer.CustomerDto;
+import pl.kkowalewski.springrestfruitshop.api.v1.model.customer.CustomerDto;
 
 import java.util.List;
 

@@ -1,42 +1,32 @@
-package pl.kkowalewski.springrestfruitshop.api.ver1.model.category;
+package pl.kkowalewski.springrestfruitshop.api.v1.model.vendor;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-public class CategoryDto {
+public class VendorDto {
 
     /*------------------------ FIELDS REGION ------------------------*/
-    @ApiModelProperty(value = "Category ID", required = true)
-    private Long id;
-
-    @ApiModelProperty(value = "Category Name", required = true)
+    @ApiModelProperty(value = "Vendor Name", required = true)
     private String name;
 
+    @ApiModelProperty(value = "Vendor URL")
+    @JsonProperty("vendor_url")
+    private String vendorUrl;
+
     /*------------------------ METHODS REGION ------------------------*/
-    public CategoryDto() {
+    public VendorDto() {
     }
 
-    public CategoryDto(Long id) {
-        this.id = id;
-    }
-
-    public CategoryDto(String name) {
+    public VendorDto(String name) {
         this.name = name;
     }
 
-    public CategoryDto(Long id, String name) {
-        this.id = id;
+    public VendorDto(String name, String vendorUrl) {
         this.name = name;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+        this.vendorUrl = vendorUrl;
     }
 
     public String getName() {
@@ -45,6 +35,14 @@ public class CategoryDto {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getVendorUrl() {
+        return vendorUrl;
+    }
+
+    public void setVendorUrl(String vendorUrl) {
+        this.vendorUrl = vendorUrl;
     }
 
     @Override
@@ -57,27 +55,27 @@ public class CategoryDto {
             return false;
         }
 
-        CategoryDto that = (CategoryDto) o;
+        VendorDto vendorDto = (VendorDto) o;
 
         return new EqualsBuilder()
-                .append(id, that.id)
-                .append(name, that.name)
+                .append(name, vendorDto.name)
+                .append(vendorUrl, vendorDto.vendorUrl)
                 .isEquals();
     }
 
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
-                .append(id)
                 .append(name)
+                .append(vendorUrl)
                 .toHashCode();
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("id", id)
                 .append("name", name)
+                .append("vendorUrl", vendorUrl)
                 .toString();
     }
 }

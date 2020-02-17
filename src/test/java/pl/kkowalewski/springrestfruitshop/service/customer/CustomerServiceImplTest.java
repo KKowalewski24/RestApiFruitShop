@@ -1,12 +1,12 @@
 package pl.kkowalewski.springrestfruitshop.service.customer;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
-import pl.kkowalewski.springrestfruitshop.api.ver1.mapper.CustomerMapper;
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.customer.CustomerDto;
+import org.mockito.junit.jupiter.MockitoExtension;
+import pl.kkowalewski.springrestfruitshop.api.v1.mapper.CustomerMapper;
+import pl.kkowalewski.springrestfruitshop.api.v1.model.customer.CustomerDto;
 import pl.kkowalewski.springrestfruitshop.model.Customer;
 import pl.kkowalewski.springrestfruitshop.repository.CustomerRepository;
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
@@ -22,7 +22,7 @@ import static org.mockito.Mockito.when;
 import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.CUSTOMERS_ROOT_PATH;
 import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.SLASH;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class CustomerServiceImplTest {
 
     /*------------------------ FIELDS REGION ------------------------*/
@@ -36,7 +36,7 @@ public class CustomerServiceImplTest {
     private CustomerService customerService;
 
     /*------------------------ METHODS REGION ------------------------*/
-    @Before
+    @BeforeEach
     public void setUp() {
         customerService = new CustomerServiceImpl(CustomerMapper.INSTANCE, customerRepository);
     }

@@ -1,8 +1,8 @@
-package pl.kkowalewski.springrestfruitshop.api.ver1.mapper;
+package pl.kkowalewski.springrestfruitshop.api.v1.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.vendor.VendorDto;
+import pl.kkowalewski.springrestfruitshop.api.v1.model.vendor.VendorDto;
 import pl.kkowalewski.springrestfruitshop.model.Vendor;
 
 @Mapper

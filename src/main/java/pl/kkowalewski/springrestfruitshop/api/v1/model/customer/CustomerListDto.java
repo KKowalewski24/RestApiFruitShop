@@ -1,4 +1,4 @@
-package pl.kkowalewski.springrestfruitshop.api.ver1.model.category;
+package pl.kkowalewski.springrestfruitshop.api.v1.model.customer;
 
 import io.swagger.annotations.ApiModelProperty;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -7,26 +7,26 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.List;
 
-public class CategoryListDto {
+public class CustomerListDto {
 
     /*------------------------ FIELDS REGION ------------------------*/
-    @ApiModelProperty(value = "List of CategoryDto")
-    private List<CategoryDto> categoryDtoList;
+    @ApiModelProperty(value = "List of CustomerDto")
+    private List<CustomerDto> customerDtoList;
 
     /*------------------------ METHODS REGION ------------------------*/
-    public CategoryListDto() {
+    public CustomerListDto() {
     }
 
-    public CategoryListDto(List<CategoryDto> categoryDtoList) {
-        this.categoryDtoList = categoryDtoList;
+    public CustomerListDto(List<CustomerDto> customerDtoList) {
+        this.customerDtoList = customerDtoList;
     }
 
-    public List<CategoryDto> getCategoryDtoList() {
-        return categoryDtoList;
+    public List<CustomerDto> getCustomerDtoList() {
+        return customerDtoList;
     }
 
-    public void setCategoryDtoList(List<CategoryDto> categoryDtoList) {
-        this.categoryDtoList = categoryDtoList;
+    public void setCustomerDtoList(List<CustomerDto> customerDtoList) {
+        this.customerDtoList = customerDtoList;
     }
 
     @Override
@@ -39,24 +39,24 @@ public class CategoryListDto {
             return false;
         }
 
-        CategoryListDto that = (CategoryListDto) o;
+        CustomerListDto that = (CustomerListDto) o;
 
         return new EqualsBuilder()
-                .append(categoryDtoList, that.categoryDtoList)
+                .append(customerDtoList, that.customerDtoList)
                 .isEquals();
     }
 
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
-                .append(categoryDtoList)
+                .append(customerDtoList)
                 .toHashCode();
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("categoryDtoList", categoryDtoList)
+                .append("customerDtoList", customerDtoList)
                 .toString();
     }
 }

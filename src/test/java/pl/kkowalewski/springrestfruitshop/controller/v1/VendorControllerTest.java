@@ -1,16 +1,17 @@
-package pl.kkowalewski.springrestfruitshop.controller.ver1;
+package pl.kkowalewski.springrestfruitshop.controller.v1;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.vendor.VendorDto;
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.vendor.VendorListDto;
+import pl.kkowalewski.springrestfruitshop.api.v1.model.vendor.VendorDto;
+import pl.kkowalewski.springrestfruitshop.api.v1.model.vendor.VendorListDto;
 import pl.kkowalewski.springrestfruitshop.service.vendor.VendorService;
 
 import java.util.ArrayList;
@@ -31,9 +32,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.SLASH;
 import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.VENDORS_ROOT_PATH;
-import static pl.kkowalewski.springrestfruitshop.controller.ver1.AbstractRestControllerTest.asJsonString;
+import static pl.kkowalewski.springrestfruitshop.controller.v1.AbstractRestControllerTest.asJsonString;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @WebMvcTest(controllers = {VendorController.class})
 public class VendorControllerTest {
 
@@ -53,7 +54,7 @@ public class VendorControllerTest {
     private VendorDto vendorDtoTwo;
 
     /*------------------------ METHODS REGION ------------------------*/
-    @Before
+    @BeforeEach
     public void setUp() {
         vendorDtoOne = new VendorDto(NAME_ONE, URL_ONE);
         vendorDtoTwo = new VendorDto(NAME_TWO, URL_TWO);

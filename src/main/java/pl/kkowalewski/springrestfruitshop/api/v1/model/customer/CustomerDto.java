@@ -1,4 +1,4 @@
-package pl.kkowalewski.springrestfruitshop.api.ver1.model.customer;
+package pl.kkowalewski.springrestfruitshop.api.v1.model.customer;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.swagger.annotations.ApiModelProperty;

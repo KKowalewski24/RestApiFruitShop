@@ -1,8 +1,8 @@
 package pl.kkowalewski.springrestfruitshop.service.customer;
 
 import org.springframework.stereotype.Service;
-import pl.kkowalewski.springrestfruitshop.api.ver1.mapper.CustomerMapper;
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.customer.CustomerDto;
+import pl.kkowalewski.springrestfruitshop.api.v1.mapper.CustomerMapper;
+import pl.kkowalewski.springrestfruitshop.api.v1.model.customer.CustomerDto;
 import pl.kkowalewski.springrestfruitshop.exception.ResourceNotFoundException;
 import pl.kkowalewski.springrestfruitshop.model.Customer;
 import pl.kkowalewski.springrestfruitshop.repository.CustomerRepository;

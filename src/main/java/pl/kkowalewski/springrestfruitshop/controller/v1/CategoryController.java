@@ -1,4 +1,4 @@
-package pl.kkowalewski.springrestfruitshop.controller.ver1;
+package pl.kkowalewski.springrestfruitshop.controller.v1;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.category.CategoryDto;
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.category.CategoryListDto;
+import pl.kkowalewski.springrestfruitshop.api.v1.model.category.CategoryDto;
+import pl.kkowalewski.springrestfruitshop.api.v1.model.category.CategoryListDto;
 import pl.kkowalewski.springrestfruitshop.service.category.CategoryService;
 
 import static pl.kkowalewski.springrestfruitshop.constant.AppConstants.CATEGORY_ROOT_PATH;

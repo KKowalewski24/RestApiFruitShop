@@ -1,9 +1,9 @@
 package pl.kkowalewski.springrestfruitshop.service.vendor;
 
 import org.springframework.stereotype.Service;
-import pl.kkowalewski.springrestfruitshop.api.ver1.mapper.VendorMapper;
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.vendor.VendorDto;
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.vendor.VendorListDto;
+import pl.kkowalewski.springrestfruitshop.api.v1.mapper.VendorMapper;
+import pl.kkowalewski.springrestfruitshop.api.v1.model.vendor.VendorDto;
+import pl.kkowalewski.springrestfruitshop.api.v1.model.vendor.VendorListDto;
 import pl.kkowalewski.springrestfruitshop.exception.ResourceNotFoundException;
 import pl.kkowalewski.springrestfruitshop.model.Vendor;
 import pl.kkowalewski.springrestfruitshop.repository.VendorRepository;
@@ -39,7 +39,7 @@ public class VendorServiceImpl implements VendorService {
     public VendorDto getVendorById(Long id) {
         return vendorRepository.findById(id)
                 .map(vendorMapper::vendorToVendorDto)
-                .map(vendorDto -> {
+                .map((vendorDto) -> {
                     vendorDto.setVendorUrl(VENDORS_ROOT_PATH + SLASH + id);
                     return vendorDto;
                 }).orElseThrow(ResourceNotFoundException::new);
@@ -50,7 +50,7 @@ public class VendorServiceImpl implements VendorService {
         List<VendorDto> vendorDtoList = vendorRepository
                 .findAll()
                 .stream()
-                .map(vendor -> {
+                .map((vendor) -> {
                     VendorDto vendorDto = vendorMapper.vendorToVendorDto(vendor);
                     vendorDto.setVendorUrl(VENDORS_ROOT_PATH + SLASH + vendor.getId());
                     return vendorDto;
@@ -74,8 +74,9 @@ public class VendorServiceImpl implements VendorService {
 
     @Override
     public VendorDto patchVendor(Long id, VendorDto vendorDto) {
-        return vendorRepository.findById(id)
-                .map(vendor -> {
+        return vendorRepository
+                .findById(id)
+                .map((vendor) -> {
                     if (vendorDto.getName() != null) {
                         vendor.setName(vendorDto.getName());
                     }

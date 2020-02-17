@@ -1,26 +1,26 @@
 package pl.kkowalewski.springrestfruitshop.service.customer;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.test.context.junit4.SpringRunner;
-import pl.kkowalewski.springrestfruitshop.api.ver1.mapper.CustomerMapper;
-import pl.kkowalewski.springrestfruitshop.api.ver1.model.customer.CustomerDto;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import pl.kkowalewski.springrestfruitshop.api.v1.mapper.CustomerMapper;
+import pl.kkowalewski.springrestfruitshop.api.v1.model.customer.CustomerDto;
 import pl.kkowalewski.springrestfruitshop.bootstrap.FruitShopBootstrap;
 import pl.kkowalewski.springrestfruitshop.model.Customer;
 import pl.kkowalewski.springrestfruitshop.repository.CategoryRepository;
 import pl.kkowalewski.springrestfruitshop.repository.CustomerRepository;
 import pl.kkowalewski.springrestfruitshop.repository.VendorRepository;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.core.IsEqual.equalTo;
 import static org.hamcrest.core.IsNot.not;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @DataJpaTest
 public class CustomerServiceImplIntegrationTest {
 
@@ -39,7 +39,7 @@ public class CustomerServiceImplIntegrationTest {
     private CustomerService customerService;
 
     /*------------------------ METHODS REGION ------------------------*/
-    @Before
+    @BeforeEach
     public void setUp() {
         customerService = new CustomerServiceImpl(
                 CustomerMapper.INSTANCE, customerRepository);
