@@ -1,10 +1,10 @@
 package pl.kkowalewski.springrestfruitshop.service.category;
 
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
 import pl.kkowalewski.springrestfruitshop.api.v1.mapper.CategoryMapper;
 import pl.kkowalewski.springrestfruitshop.api.v1.model.category.CategoryDto;
 import pl.kkowalewski.springrestfruitshop.model.Category;
@@ -13,11 +13,11 @@ import pl.kkowalewski.springrestfruitshop.repository.CategoryRepository;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
-@RunWith(MockitoJUnitRunner.class)
+@ExtendWith(MockitoExtension.class)
 public class CategoryServiceImplTest {
 
     /*------------------------ FIELDS REGION ------------------------*/
@@ -30,7 +30,7 @@ public class CategoryServiceImplTest {
     private CategoryService categoryService;
 
     /*------------------------ METHODS REGION ------------------------*/
-    @Before
+    @BeforeEach
     public void setUp() {
         categoryService = new CategoryServiceImpl(
                 CategoryMapper.INSTANCE, categoryRepository);

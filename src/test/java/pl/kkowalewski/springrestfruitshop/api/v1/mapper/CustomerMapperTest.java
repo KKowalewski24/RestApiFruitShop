@@ -1,11 +1,11 @@
 package pl.kkowalewski.springrestfruitshop.api.v1.mapper;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import pl.kkowalewski.springrestfruitshop.api.v1.model.customer.CustomerDto;
 import pl.kkowalewski.springrestfruitshop.model.Customer;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 public class CustomerMapperTest {
 
